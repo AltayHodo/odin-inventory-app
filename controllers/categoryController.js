@@ -29,4 +29,15 @@ async function createCategory(req, res) {
   }
 }
 
-module.exports = { getCategories, showNewCategoryForm, createCategory };
+async function deleteCategory(req, res) {
+  try {
+    const { id } = req.params;
+    await db.deleteCategory(id);
+    res.redirect('/categories');
+  } catch (err) {
+    console.error('Error deleting category:', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+module.exports = { getCategories, showNewCategoryForm, createCategory, deleteCategory };
