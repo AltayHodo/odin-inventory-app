@@ -11,8 +11,15 @@
     <ul>
       <% items.forEach(item => { %>
       <li>
-        <%= item.name %>, 
-        ID: <%= item.category_id %>
+        <%= item.name %>, Category: <%= item.category_name %>
+        <form
+          action="/items/<%= item.id %>?_method=DELETE"
+          method="POST"
+          style="display: inline"
+        >
+          <button type="submit">Delete</button>
+          <a href="/items/<%= item.id %>/edit">Edit</a>
+        </form>
       </li>
       <% }) %>
     </ul>

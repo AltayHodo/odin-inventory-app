@@ -35,8 +35,48 @@ async function createItem(req, res) {
   }
 }
 
+async function deleteItem(req, res) {
+  try {
+    const { id } = req.params;
+    await db.deleteItem(id);
+    res.redirect('/items');
+  } catch (err) {
+    console.error('Error deleting item:', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+async function showEditForm(req, res) {
+  try {
+    const { id } = req.params;
+    const item = await db.getItemById(id);
+    const categories = await db.getAllCategories();
+
+    res.render('edit-item', { title: 'Edit Item', item, categories });
+  } catch (err) {
+    console.error('Error showing edit form:', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
+async function updateItem(req, res) {
+  try {
+    const { id } = req.params;
+    const { name, category_id } = req.body;
+
+    await db.updateItem(id, name, category_id);
+    res.redirect('/items');
+  } catch (err) {
+    console.error('Error updating item:', err);
+    res.status(500).send('Internal Server Error');
+  }
+}
+
 module.exports = {
   getItems,
   showNewItemForm,
   createItem,
+  deleteItem,
+  showEditForm,
+  updateItem,
 };
