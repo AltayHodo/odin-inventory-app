@@ -4,6 +4,7 @@ const path = require('path');
 
 const assetsPath = path.join(__dirname, 'public');
 app.use(express.static(assetsPath));
+app.use(express.urlencoded({ extended: true }));
 
 const itemRouter = require('./routes/itemRoutes');
 const categoryRouter = require('./routes/categoryRoutes');
