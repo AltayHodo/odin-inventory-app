@@ -13,7 +13,12 @@ const itemRouter = require('./routes/itemRoutes');
 const categoryRouter = require('./routes/categoryRoutes');
 
 app.set('views', path.join(__dirname, 'views'));
+app.set('layout', 'layout');
 app.set('view engine', 'ejs');
+
+const expressLayouts = require('express-ejs-layouts');
+app.use(expressLayouts);
+app.set('layout', 'layout');
 
 app.use('/items', itemRouter);
 app.use('/categories', categoryRouter);

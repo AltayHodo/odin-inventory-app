@@ -1,11 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title><%= title %></title>
-</head>
-<body>
-  <h2><%= title %></h2>
+<h2><%= title %></h2>
 
   <form action="/items/<%= item.id %>?_method=PUT" method="POST">
     <label for="name">Item Name:</label>
@@ -22,5 +15,4 @@
   </form>
 
   <a href="/items">Back to items</a>
-</body>
-</html>
+
